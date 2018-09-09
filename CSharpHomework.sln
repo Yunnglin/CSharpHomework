@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework1_program1", "Homework1_program1\Homework1_program1.csproj", "{CD4A508D-5267-4668-B3BF-AA3BF4C61586}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "program1", "homework1\program1\program1.csproj", "{CD4A508D-5267-4668-B3BF-AA3BF4C61586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework1_program2", "Homework1_program2\Homework1_program2.csproj", "{79B51352-E724-49ED-AC0A-41A885D01AB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "program2", "homework1\program2\program2.csproj", "{79B51352-E724-49ED-AC0A-41A885D01AB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,11 +6,12 @@
 @author: 毛云麟  
 ---
 */  
-  
+\<br> 
+**********************
 Contents  
 Homework1:  
->>program1:控制台程序，计算两个数的积  
->>program2:windows应用程序，计算两个数的积  
+program1:控制台程序，计算两个数的积  
+program2:windows应用程序，计算两个数的积  
 	  
 Homework2:  
 	program1:计算输入数据的素数因子  

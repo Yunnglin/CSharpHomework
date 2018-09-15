@@ -1,9 +1,7 @@
-##Subject: C# Programming Tutorial
+## Subject: C# Programming Tutorial
 
-##Author: Mr.Mao  
---------------
-
-
+Author: Mr.Mao  
+-------------
 
 Contents  
 --------

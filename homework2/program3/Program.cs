@@ -25,8 +25,6 @@ namespace program3
 
         }
 
-        static int K = 0;//计数
-
         public void SieveOfEratosthenes(int num)//埃拉托斯特尼筛法
         {
             //生成动态数组
@@ -49,7 +47,6 @@ namespace program3
                 lastNum = (int)primes[count - 1];
                 for (int i = 0; i < count; i++)
                 {
-                    K++;
                     if (((int)primes[i] % prePrime == 0) && ((int)primes[i]!=2))
                     {//移除掉各种倍数
                         primes.RemoveAt(i);
@@ -65,7 +62,7 @@ namespace program3
             {
                 Console.Write(i + "  ");
             }
-            Console.WriteLine(K);
+            Console.WriteLine();
         }
     }
 

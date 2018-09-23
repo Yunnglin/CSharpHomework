@@ -23,7 +23,7 @@ namespace program1
             }
             try
             {
-                IShape circle = ShapeFactory.GetShape("ircle", 3);
+                IShape circle = ShapeFactory.GetShape("circle", 3);
                 circle.GetArea();
             }
             catch (Exception e)

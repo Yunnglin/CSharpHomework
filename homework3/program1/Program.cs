@@ -6,20 +6,48 @@ using System.Threading.Tasks;
 
 namespace program1
 {
-    
+
     //用接口实现
     class Program
     {
         static void Main(string[] args)
         {
-            IShape triangle = ShapeFactory.GetShape("triangle", 3, 4, 5);
-            triangle.GetArea();
-            IShape circle = ShapeFactory.GetShape("circle", 3);
-            circle.GetArea();
-            IShape square = ShapeFactory.GetShape("square", 3);
-            square.GetArea();
-            IShape rectangle = ShapeFactory.GetShape("rectangle", 3, 4);
-            rectangle.GetArea();
+            try
+            {
+                IShape triangle = ShapeFactory.GetShape("triangle", 3, 4, 5);
+                triangle.GetArea();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unsupported graphics");
+            }
+            try
+            {
+                IShape circle = ShapeFactory.GetShape("ircle", 3);
+                circle.GetArea();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unsupported graphics");
+            }
+            try
+            {
+                IShape square = ShapeFactory.GetShape("square", 3);
+                square.GetArea();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unsupported graphics");
+            }
+            try
+            {
+                IShape rectangle = ShapeFactory.GetShape("rectangle", 3, 4);
+                rectangle.GetArea();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unsupported graphics");
+            }
         }
     }
 
@@ -30,12 +58,12 @@ namespace program1
 
     class ShapeFactory
     {
-        public static IShape GetShape(string shape,double a=0,double b=0,double c=0)
+        public static IShape GetShape(string shape, double a = 0, double b = 0, double c = 0)
         {
             IShape ishape = null;
             if (shape.Equals("triangle"))
             {
-                ishape = new Triangle(a,b,c);
+                ishape = new Triangle(a, b, c);
             }
             else if (shape.Equals("circle"))
             {
@@ -51,7 +79,7 @@ namespace program1
             }
             else
             {
-                Console.WriteLine("不支持此类型！！");
+                Console.WriteLine("不支持此图形！！");
             }
             return ishape;
         }
@@ -63,7 +91,7 @@ namespace program1
         private readonly double b;
         private readonly double c;
 
-       public Triangle(double a,double b,double c)
+        public Triangle(double a, double b, double c)
         {
             this.a = a;
             this.b = b;
@@ -75,28 +103,28 @@ namespace program1
             if (a > 0 && b > 0 && c > 0 && a + b > c && a + c > b && b + c > a)
             {
                 Console.WriteLine("The sides of the triangle are a = {0},b = {1},c = {2}", a, b, c);
-                double  p = a + b + c;
-                double  h = p / 2;
+                double p = a + b + c;
+                double h = p / 2;
                 double area = Math.Sqrt(h * (h - a) * (h - b) * (h - c));
                 Console.WriteLine("Area of the triangle is {0}", area);
             }
             else Console.WriteLine("Unable to form a triangle！");
         }
     }
-   
+
     class Circle : IShape
     {
-       private readonly double r;
+        private readonly double r;
 
-       public Circle(double r)
+        public Circle(double r)
         {
             this.r = r;
         }
         public void GetArea()
         {
-            if (r>=0)
+            if (r >= 0)
             {
-                Console.WriteLine("The radius of the circle is " + r );
+                Console.WriteLine("The radius of the circle is " + r);
                 double area = Math.PI * r * r;
                 Console.WriteLine("Area of the circle is {0}", area);
             }
@@ -134,9 +162,9 @@ namespace program1
         }
         public void GetArea()
         {
-            if (a >= 0&&b>=0)
+            if (a >= 0 && b >= 0)
             {
-                Console.WriteLine("The sides of the rectangle is {0} and {1}" , a, b);
+                Console.WriteLine("The sides of the rectangle is {0} and {1}", a, b);
                 double area = a * b;
                 Console.WriteLine("Area of the rectangle is {0}", area);
             }

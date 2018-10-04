@@ -5,15 +5,15 @@ namespace program1
 {
     partial class User
     {
-        
+
         public class AlarmClock
         {
-          
+
             public int Hour;
             public int Minute;
             public int Second;
 
-            public AlarmClock( int hour=0,int minute=0,int second=0)
+            public AlarmClock(int hour = 0, int minute = 0, int second = 0)
             {
                 Hour = hour;
                 Minute = minute;
@@ -28,21 +28,21 @@ namespace program1
                     int hour = Convert.ToInt32(Console.ReadLine());
                     if (hour < 0 || hour > 23)
                     {
-                        throw new TimeException("Time out of range");
+                        throw new TimeException("Hours out of range");
                     }
 
                     Console.WriteLine("Please set the minutes: ");
                     int minute = Convert.ToInt32(Console.ReadLine());
                     if (minute < 0 || minute > 60)
                     {
-                        throw new TimeException("Time out of range");
+                        throw new TimeException("Minutes out of range");
                     }
 
                     Console.WriteLine("Please set the seconds");
                     int second = Convert.ToInt32(Console.ReadLine());
                     if (second < 0 || second > 60)
                     {
-                        throw new TimeException("Time out of range");
+                        throw new TimeException("Second out of range");
                     }
 
                     Hour = hour;
@@ -81,7 +81,7 @@ namespace program1
 
                 if (DateTime.Now.Hour == Hour && DateTime.Now.Minute == Minute && DateTime.Now.Second == Second)  //如果当前时间是10点30分
                 {
-                    Console.WriteLine("It's " + DateTime.Now.ToString()+ " now!!! ");
+                    Console.WriteLine("It's " + DateTime.Now.ToString() + " now!!! ");
                     Console.WriteLine("早く起きなさい！！！");
                 }
 

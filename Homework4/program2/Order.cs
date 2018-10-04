@@ -10,6 +10,11 @@ namespace program2
     {//属性大写开头，字段小写开头
         public string OrderNum { set; get; }
         public string ClientName { set; get; }
+
         public List<OrderDetails> orderDetails;//一个订单包含多个订单信息，存储
+
+        public void AddOrderDetails(OrderDetails orderDetails) => this.orderDetails.Add(orderDetails);//添加条目
+
+        public void RemoveOrderDetails(OrderDetails orderDetails) => this.orderDetails.Remove(orderDetails);//删除条目
     }
 }

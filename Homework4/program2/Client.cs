@@ -19,6 +19,83 @@ namespace program2
     {
         static void Main(string[] args)
         {
+           
+            #region //示例（订单明细）条目，四个测试条目
+            //OrderDetails od1 = new OrderDetails
+            //{
+            //    Brand = Products.Apple,
+            //    ProductsNum = 2,
+            //    Price=8800,
+            //};
+            //OrderDetails od2 = new OrderDetails
+            //{
+            //    Brand = Products.HUAWEI,
+            //    ProductsNum = 1,
+            //    Price=3200,
+            //};
+            //OrderDetails od3 = new OrderDetails
+            //{
+            //    Brand = Products.OPPO,
+            //    ProductsNum = 3,
+            //    Price=3500,
+            //};
+            //OrderDetails od4 = new OrderDetails
+            //{
+            //    Brand = Products.SAMSUNG,
+            //    ProductsNum = 2,
+            //    Price=3800,
+            //};
+            #endregion
+            #region //示例订单
+            Order order1 = new Order
+            {
+                OrderNum = "20181004001",
+                ClientName="Bob",
+            };
+            Order order2 = new Order
+            {
+                OrderNum = "20181004002",
+                ClientName = "Tom",
+            };
+            Order order3 = new Order
+            {
+                OrderNum = "20181004003",
+                ClientName = "Alice",
+            }; Order order4 = new Order
+            {
+                OrderNum = "20181004004",
+                ClientName = "Alex",
+            };
+            #endregion
+
+            //添加订单明细
+            //直接add时创建对象
+            order1.orderDetails = new List<OrderDetails>();
+            order1.AddOrderDetails(new OrderDetails(Products.Apple,3,8800));
+            order1.AddOrderDetails(new OrderDetails(Products.HUAWEI,2,2800));
+
+            order2.orderDetails = new List<OrderDetails>();
+            order2.AddOrderDetails(new OrderDetails(Products.OPPO,1,3200));
+            order2.AddOrderDetails(new OrderDetails(Products.SAMSUNG,4,4800));
+
+            order3.orderDetails = new List<OrderDetails>();
+            order3.AddOrderDetails(new OrderDetails(Products.vivo, 1, 3000));
+
+            order4.orderDetails = new List<OrderDetails>();
+            order4.AddOrderDetails(new OrderDetails(Products.XIAOMI, 10, 2500));
+
+            //订单服务,添加了两个订单
+            OrderService.orders = new List<Order>();
+            //OrderService.AddOrder(order1);
+            OrderService.AddOrder(order2);
+            OrderService.AddOrder(order3);
+            OrderService.AddOrder(order4);
+
+            OrderService.RemoveOrder(order1);
+            OrderService.DisplayAllOrders();
+            // OrderService.FindOrderByOrderNum("20181004001");
+            // OrderService.FindOrderByClientName("Tom");
+            OrderService.FindOrderByProductBrand(Products.SAMSUNG);
         }
     }
 }

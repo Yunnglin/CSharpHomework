@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B83A2BA3-B059-4D43-A5DF-F77CAD93477C}</ProjectGuid>
+    <ProjectGuid>{42E25427-55FC-4698-9F18-0CC7E70C2F30}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>program1</RootNamespace>
-    <AssemblyName>program1</AssemblyName>
+    <RootNamespace>program2</RootNamespace>
+    <AssemblyName>program2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,9 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlarmClock.cs" />
-    <Compile Include="TimeException.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderDetails.cs" />
+    <Compile Include="OrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

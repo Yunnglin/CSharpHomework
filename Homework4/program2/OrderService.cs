@@ -13,7 +13,10 @@ namespace program2
 
         public static void AddOrder(Order order) => orders.Add(order);//添加订单
 
-        public static void RemoveOrder(Order order) => orders.Remove(order);//删除订单
+        public static void RemoveOrder(Order order) {
+            order.ClearOrderDetails();
+            orders.Remove(order);
+        }//删除订单
 
         public static void RemoveAllOrders() => orders.Clear();//清空订单
 
@@ -23,35 +26,47 @@ namespace program2
             {
                 Console.WriteLine("OrderNumber: " + order.OrderNum);
                 Console.WriteLine("Client Name: " + order.ClientName);
+                Console.WriteLine("===============================");
+
                 foreach (var od in order.orderDetails)
                 {
                     Console.WriteLine("Product Brand: " + od.Brand.ToString());
                     Console.WriteLine("Product Number: " + od.ProductsNum);
                     Console.WriteLine("Price per product: " + od.Price);
                     Console.WriteLine("--------------------------");
+                    Console.WriteLine();
                 }
-
-                Console.WriteLine("===============================");
-                Console.WriteLine();
             }
         }
 
         public static void DisplayOrder(Order order)//显示该订单信息
         {
-            Console.WriteLine("OrderNumber: " + order.OrderNum);
-            Console.WriteLine("Client Name: " + order.ClientName);
-            foreach (var od in order.orderDetails)
+            try
             {
-                Console.WriteLine("Product Brand: " + od.Brand.ToString());
-                Console.WriteLine("Product Number: " + od.ProductsNum);
-                Console.WriteLine("Price per product: " + od.Price);
-                Console.WriteLine("--------------------------");
+                if (order == null)
+                {
+                    throw new DataException("No such order exists. ");
+                }
+                Console.WriteLine("OrderNumber: " + order.OrderNum);
+                Console.WriteLine("Client Name: " + order.ClientName);
+                Console.WriteLine("===============================");
+
+                foreach (var od in order.orderDetails)
+                {
+                    Console.WriteLine("Product Brand: " + od.Brand.ToString());
+                    Console.WriteLine("Product Number: " + od.ProductsNum);
+                    Console.WriteLine("Price per product: " + od.Price);
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine();
+                }
             }
-            Console.WriteLine("===============================");
-            Console.WriteLine();
+            catch (DataException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
         }
 
-        public static void FindOrderByOrderNum(string num)//根据订单号查询
+        public static Order FindOrderByOrderNum(string num)//根据订单号查询,返回订单对象
         {
             bool exit = false;
             foreach (var order in orders)
@@ -59,16 +74,18 @@ namespace program2
                 if (string.Equals(num, order.OrderNum))
                 {
                     exit = true;
-                    DisplayOrder(order);
+                    // DisplayOrder(order);
+                    return order;
                 }
             }
-            if (exit==false)
+            if (exit == false)
             {
-                Console.WriteLine("Sorry, no such order of this number exits. ");
+                throw new DataException("Sorry, no such order of this number exists. ");
             }
+            return null;
         }
 
-        public static void FindOrderByClientName(string name)//根据客户名查询
+        public static void FindOrderByClientName(string name)//根据客户名查询，显示订单内容
         {
             bool exit = false;
             foreach (var order in orders)
@@ -81,11 +98,11 @@ namespace program2
             }
             if (exit == false)
             {
-                Console.WriteLine("Sorry, no such order of this client name exits. ");
+                Console.WriteLine("Sorry, no such order of this client name exists. ");
             }
         }
 
-        public static void FindOrderByProductBrand(Products brand)//查询包含该产品的订单
+        public static void FindOrderByProductBrand(Products brand)//查询包含该产品的订单，显示订单内容
         {
             bool exit = false;
             foreach (var order in orders)
@@ -98,14 +115,31 @@ namespace program2
                         DisplayOrder(order);
                     }
                 }
-               
+
             }
             if (exit == false)
             {
-                Console.WriteLine("Sorry, no such order of this brand exits. ");
+                Console.WriteLine("Sorry, no such order of this brand exists. ");
             }
         }
 
-        //用for倒序遍历删除
+        public static void ModifyClientName(Order order,string name)//修改订单客户名
+        {
+            try
+            {
+                if (order == null)
+                {
+                    throw new DataException("No such order exists");
+                }
+
+                order.ClientName = name;
+
+            }
+            catch(DataException e)
+            {
+                Console.WriteLine("Sorry, " + e.Message);
+            }
+        }
+
     }
 }

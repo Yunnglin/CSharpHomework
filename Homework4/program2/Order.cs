@@ -16,5 +16,7 @@ namespace program2
         public void AddOrderDetails(OrderDetails orderDetails) => this.orderDetails.Add(orderDetails);//添加条目
 
         public void RemoveOrderDetails(OrderDetails orderDetails) => this.orderDetails.Remove(orderDetails);//删除条目
+
+        public void ClearOrderDetails() =>orderDetails.Clear();//清空条目
     }
 }

@@ -13,7 +13,8 @@ namespace program1
 
         public static void AddOrder(Order order) => orders.Add(order);//添加订单
 
-        public static void RemoveOrder(Order order) {
+        public static void RemoveOrder(Order order)
+        {
             order.ClearOrderDetails();
             orders.Remove(order);
         }//删除订单
@@ -75,7 +76,7 @@ namespace program1
             {
                 throw new DataException("Sorry, no such order of this number exists. ");
             }
-            foreach(var order in query)
+            foreach (var order in query)
             {
                 DisplayOrder(order);
             }
@@ -99,12 +100,18 @@ namespace program1
 
         public static void FindOrderByProductBrand(Products brand)//查询包含该产品的订单，显示订单内容
         {
-            var query = from order in orders
-                        where
-                       ( from od in order.orderDetails//嵌套查询
-                         where od.Brand == brand
-                         select od.Brand).Contains(brand)
-                        select order;
+            //var query = from order in orders
+            //            where
+            //           ( from od in order.orderDetails//嵌套查询
+            //             where od.Brand == brand
+            //             select od.Brand).Contains(brand)
+            //            select order;
+
+            var query = orders
+                .Where(order => order.orderDetails
+                    .Where(od => od.Brand == brand)
+                    .Select(od => od.Brand).Contains(brand))
+                .Select(orders => orders);
 
             if (query.Count() == 0)
             {
@@ -115,12 +122,12 @@ namespace program1
                 DisplayOrder(order);
             }
         }
-        
+
         public static void FindLargeOrder()//查询订单金额大于10000的订单
         {
             var query = orders
                 .Where(order => order.GetTotalMoney() >= 10000)
-                .Select(order=>order);
+                .Select(order => order);
 
             if (query.Count() == 0)
             {
@@ -131,7 +138,7 @@ namespace program1
                 DisplayOrder(order);
             }
         }
-        public static void ModifyClientName(Order order,string name)//修改订单客户名
+        public static void ModifyClientName(Order order, string name)//修改订单客户名
         {
             try
             {
@@ -143,7 +150,7 @@ namespace program1
                 order.ClientName = name;
 
             }
-            catch(DataException e)
+            catch (DataException e)
             {
                 Console.WriteLine("Sorry, " + e.Message);
             }

@@ -96,7 +96,7 @@ namespace program1
 
             try
             {
-                OrderService.FindOrderByOrderNum("2018100400");
+                OrderService.FindOrderByOrderNum("20181004001");
 
 
                 OrderService.FindOrderByClientName("Tom");

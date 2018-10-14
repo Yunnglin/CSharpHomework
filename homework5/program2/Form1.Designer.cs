@@ -226,11 +226,13 @@
             // LineColor
             // 
             this.LineColor.BackColor = System.Drawing.Color.Blue;
+            this.LineColor.Enabled = false;
             this.LineColor.Location = new System.Drawing.Point(1111, 448);
             this.LineColor.Name = "LineColor";
             this.LineColor.ReadOnly = true;
             this.LineColor.Size = new System.Drawing.Size(100, 25);
             this.LineColor.TabIndex = 5;
+            this.LineColor.TextChanged += new System.EventHandler(this.LineColor_TextChanged);
             // 
             // Form1
             // 

@@ -29,3 +29,7 @@ Homework4:
 Homework5:
 >program1:对上次订单程序，使用LINQ语句，（1）实现按照商品名称、客户等字段查询订单的功能;（2） 查询订单金额大于1万元的订单。	
 >program2:Cayley树，添加一些控件，以方便用户修改角度、长度，添加两子树的位置系数，颜色、粗细、是否随机......
+
+Homework6:
+>program1:在OrderService中添加一个Export方法，可以将所有的订单序列化为XML文件；添加一个Import方法可以从XML文件中载入订单。  
+>program1test:为OrderService类的各个Public方法，编写测试用例，使用合法和非法的输出数据进行测试。

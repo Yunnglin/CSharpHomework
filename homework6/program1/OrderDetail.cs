@@ -19,7 +19,7 @@ namespace program1
     [Serializable]
     public class OrderDetail//商品明细
     {
-        internal Products Brand { get; set; }
+        public Products Brand { get; set; }
         public int ProductsNum { get; set; }
         public decimal Price { get; set; }
 

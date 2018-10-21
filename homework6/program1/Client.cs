@@ -94,8 +94,8 @@ namespace program1
             orderService.AddOrder(order3);
             orderService.AddOrder(order4);
 
-            orderService.Export();
-            OrderService.Import(@"D:\orderService.xml");
+            orderService.Export(@"D:\orderService.xml");
+           OrderService os= OrderService.Import(@"D:\orderService.xml");
             //try
             //{
             //    orderService.FindOrderByOrderNum("20181004001");

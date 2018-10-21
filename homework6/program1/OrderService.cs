@@ -93,7 +93,7 @@ namespace program1
             return query.ToList();
         }
 
-        public  void FindOrderByClientName(string name)//根据客户名查询，显示订单内容
+        public List<Order> FindOrderByClientName(string name)//根据客户名查询，显示订单内容
         {
             var query = from order in orders
                         where order.ClientName.Equals(name)
@@ -106,9 +106,10 @@ namespace program1
             {
                 DisplayOrder(order);
             }
+            return query.ToList();
         }
 
-        public  void FindOrderByProductBrand(Products brand)//查询包含该产品的订单，显示订单内容
+        public List<Order> FindOrderByProductBrand(Products brand)//查询包含该产品的订单，显示订单内容
         {
             //var query = from order in orders
             //            where
@@ -131,9 +132,10 @@ namespace program1
             {
                 DisplayOrder(order);
             }
+            return query.ToList();
         }
 
-        public  void FindLargeOrder()//查询订单金额大于10000的订单
+        public List<Order> FindLargeOrder()//查询订单金额大于10000的订单
         {
             var query = orders
                 .Where(order => order.GetTotalMoney() >= 10000)
@@ -147,6 +149,7 @@ namespace program1
             {
                 DisplayOrder(order);
             }
+            return query.ToList();
         }
 
         public void ModifyClientName(Order order, string name)//修改订单客户名
@@ -172,10 +175,10 @@ namespace program1
 
         public OrderService() { }//反序列化需要无参的构造函数
         
-        public void Export()
+        public void Export(string path)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(OrderService));
-            string xmlFileName = @"D:\orderService.xml";
+            string xmlFileName = path;
 
             FileStream fs = new FileStream(xmlFileName, FileMode.Create);//输出到文件
             xmlSerializer.Serialize(fs, this);

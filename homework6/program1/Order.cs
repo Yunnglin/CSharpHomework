@@ -12,29 +12,33 @@ namespace program1
     {//属性大写开头，字段小写开头
         public string OrderNum { set; get; }
         public string ClientName { set; get; }
-
-        public Order() { }
-
-        private List<OrderDetail> orderDetails=new List<OrderDetail>();//一个订单包含多个订单信息，存储
-       // [XmlElement(ElementName ="OrderDetails")]
-        public List<OrderDetail> OrderDetails
+        public decimal TotalMoney
         {
-            get { return orderDetails; }
-            set { orderDetails = value; }
+            get
+            {
+                decimal totalMoney = OrderDetails
+                 .Select(detail => detail.ProductsNum * detail.Price)
+                 .Sum();
+                return totalMoney;
+            }
         }
 
-        public void AddOrderDetails(OrderDetail orderDetails) => this.orderDetails.Add(orderDetails);//添加条目
+        public Order() { }
+        // [XmlElement(ElementName ="OrderDetails")]
+        public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
-        public void RemoveOrderDetails(OrderDetail orderDetails) => this.orderDetails.Remove(orderDetails);//删除条目
+        public void AddOrderDetails(OrderDetail orderDetails) => this.OrderDetails.Add(orderDetails);//添加条目
 
-        public void ClearOrderDetails() =>orderDetails.Clear();//清空条目
+        public void RemoveOrderDetails(OrderDetail orderDetails) => this.OrderDetails.Remove(orderDetails);//删除条目
+
+        public void ClearOrderDetails() =>OrderDetails.Clear();//清空条目
 
         public decimal GetTotalMoney()
         {
-            decimal prices = orderDetails
+          decimal  totalMoney = OrderDetails
                 .Select(detail => detail.ProductsNum * detail.Price)
                 .Sum();
-            return prices;
+            return totalMoney;
         }
     }
 }

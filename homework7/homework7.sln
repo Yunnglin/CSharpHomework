@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderServiceWinForm", "OrderServiceWinForm\OrderServiceWinForm.csproj", "{D68D5F7D-C960-4489-878A-DCC52FF93724}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "program1", "..\homework6\program1\program1.csproj", "{615460A7-21BE-4EA2-92F5-F0CF713440B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D68D5F7D-C960-4489-878A-DCC52FF93724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D68D5F7D-C960-4489-878A-DCC52FF93724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D68D5F7D-C960-4489-878A-DCC52FF93724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D68D5F7D-C960-4489-878A-DCC52FF93724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{615460A7-21BE-4EA2-92F5-F0CF713440B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615460A7-21BE-4EA2-92F5-F0CF713440B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615460A7-21BE-4EA2-92F5-F0CF713440B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615460A7-21BE-4EA2-92F5-F0CF713440B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F45AB15F-7AA8-4C8B-9EEE-2265AD6F2DA7}
+	EndGlobalSection
+EndGlobal

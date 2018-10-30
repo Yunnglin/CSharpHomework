@@ -10,30 +10,25 @@ using System.Xml.Serialization;
 namespace program1
 
 {   [Serializable]
+//添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询）功能。
    public class OrderService
-    {//添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询）功能。
-     //在订单删除、修改失败时，能够产生异常并显示给客户错误信息。
-       private List<Order> orders=new List<Order>();//储存订单
-    // [XmlElement(ElementName ="OrderService")]
-        public List<Order> Orders
-        {
-            get { return orders; }
-            set { orders = value; }
-        }
+    {
+     // [XmlElement(ElementName ="OrderService")]
+        public List<Order> Orders { get; set; } = new List<Order>();
 
-        public  void AddOrder(Order order) => orders.Add(order);//添加订单
+        public  void AddOrder(Order order) => Orders.Add(order);//添加订单
 
         public  void RemoveOrder(Order order)
         {
             order.ClearOrderDetails();
-            orders.Remove(order);
+            Orders.Remove(order);
         }//删除订单
 
-        public  void RemoveAllOrders() => orders.Clear();//清空订单
+        public  void RemoveAllOrders() => Orders.Clear();//清空订单
 
         public void DisplayAllOrders()//显示所有订单信息
         {
-            foreach (var order in orders)
+            foreach (var order in Orders)
             {
                 Console.WriteLine("OrderNumber: " + order.OrderNum);
                 Console.WriteLine("Client Name: " + order.ClientName);
@@ -79,7 +74,7 @@ namespace program1
 
         public  List<Order> FindOrderByOrderNum(string num)//根据订单号查询,返回订单对象
         {
-            var query = from order in orders
+            var query = from order in Orders
                         where order.OrderNum.Equals(num)
                         select order;
             if (query.Count() == 0)
@@ -95,7 +90,7 @@ namespace program1
 
         public List<Order> FindOrderByClientName(string name)//根据客户名查询，显示订单内容
         {
-            var query = from order in orders
+            var query = from order in Orders
                         where order.ClientName.Equals(name)
                         select order;
             if (query.Count() == 0)
@@ -118,7 +113,7 @@ namespace program1
             //             select od.Brand).Contains(brand)
             //            select order;
 
-            var query = orders
+            var query = Orders
                 .Where(order => order.OrderDetails
                     .Where(od => od.Brand == brand)
                     .Select(od => od.Brand).Contains(brand))
@@ -137,7 +132,7 @@ namespace program1
 
         public List<Order> FindLargeOrder()//查询订单金额大于10000的订单
         {
-            var query = orders
+            var query = Orders
                 .Where(order => order.GetTotalMoney() >= 10000)
                 .Select(order => order);
 

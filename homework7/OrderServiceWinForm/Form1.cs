@@ -21,12 +21,15 @@ namespace OrderServiceWinForm
         //（3）尽量通过数据绑定来实现功能。 注：订单明细可以设置DataMember来绑定。
 
 
-            //导入数据
+        //导入数据
+        
         public OrderService orderService = OrderService.Import(@"D:\orderService.xml");
+        public string path= @"D:\orderService.xml";
         public string KeyWord { get; set; }
 
         public Form1()
         {
+            //初始化在第一行
             InitializeComponent();
             //绑定订单数据源
             orderBindingSource.DataSource = orderService.Orders;
@@ -46,6 +49,7 @@ namespace OrderServiceWinForm
                     return;
                 if (FindCondition.SelectedItem.ToString() == "订单号")
                 {
+
                     orderBindingSource.DataSource = orderService.FindOrderByOrderNum(KeyWord);
                 }
                 else if (FindCondition.SelectedItem.ToString() == "客户名")
@@ -71,8 +75,6 @@ namespace OrderServiceWinForm
             }
         }
 
-
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -85,7 +87,7 @@ namespace OrderServiceWinForm
 
         private void Save()
         {
-            orderService.Export(@"D:\orderService.xml");
+            orderService.Export(path);
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -111,6 +113,38 @@ namespace OrderServiceWinForm
         private void Form1_Load(object sender, EventArgs e)
         {
             this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
+        }
+
+        private void ImportBrn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.ShowDialog();
+            path = file.FileName;
+            orderService = OrderService.Import(path);
+            FindBtn_Click(this,null);
+        }
+
+        private void AddOrder_Click(object sender, EventArgs e)
+        {
+            bindingNavigatorO.AddNewItem.PerformClick();
+        }
+
+        private void RemoveOrder_Click(object sender, EventArgs e)
+        {
+           
+            foreach(var o in orderService.Orders)
+            {
+                if (o.OrderNum == ChosenOrder.Text)
+                {
+                    orderService.RemoveOrder(o);
+                    break;
+                }
+            }
+            //索引没有值的bug
+            BindingSource bs = new BindingSource();
+            bs.DataSource = orderService.Orders;
+            orderBindingSource.DataSource = bs;
+           
         }
     }
 }

@@ -16,14 +16,13 @@ namespace program1
      // [XmlElement(ElementName ="OrderService")]
         public List<Order> Orders { get; set; } = new List<Order>();
 
-        public  void AddOrder(Order order) => Orders.Add(order);//添加订单
+        public void AddOrder(Order order) {
 
-        public  void RemoveOrder(Order order)
-        {
-            order.ClearOrderDetails();
-            Orders.Remove(order);
-        }//删除订单
+            Orders.Add(order);
+        }//添加订单
 
+        public void RemoveOrder(Order order) => Orders.Remove(order);//删除订单
+       
         public  void RemoveAllOrders() => Orders.Clear();//清空订单
 
         public void DisplayAllOrders()//显示所有订单信息

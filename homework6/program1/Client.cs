@@ -50,21 +50,17 @@ namespace program1
             #region //示例订单
             Order order1 = new Order
             {
-                OrderNum = "20181004001",
                 ClientName = "Bob",
             };
             Order order2 = new Order
             {
-                OrderNum = "20181004002",
                 ClientName = "Tom",
             };
             Order order3 = new Order
             {
-                OrderNum = "20181004003",
                 ClientName = "Alice",
             }; Order order4 = new Order
             {
-                OrderNum = "20181004004",
                 ClientName = "Alex",
             };
             #endregion
@@ -95,7 +91,7 @@ namespace program1
             orderService.AddOrder(order4);
 
             orderService.Export(@"D:\orderService.xml");
-           OrderService os= OrderService.Import(@"D:\orderService.xml");
+          // OrderService os= OrderService.Import(@"D:\orderService.xml");
             //try
             //{
             //    orderService.FindOrderByOrderNum("20181004001");

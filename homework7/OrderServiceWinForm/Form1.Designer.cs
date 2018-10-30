@@ -65,6 +65,7 @@
             this.orderNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalMoneyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -106,7 +107,7 @@
             // 
             // RemoveOrder
             // 
-            this.RemoveOrder.Location = new System.Drawing.Point(757, 43);
+            this.RemoveOrder.Location = new System.Drawing.Point(711, 35);
             this.RemoveOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RemoveOrder.Name = "RemoveOrder";
             this.RemoveOrder.Size = new System.Drawing.Size(124, 34);
@@ -117,7 +118,7 @@
             // 
             // AddOrder
             // 
-            this.AddOrder.Location = new System.Drawing.Point(575, 43);
+            this.AddOrder.Location = new System.Drawing.Point(536, 35);
             this.AddOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddOrder.Name = "AddOrder";
             this.AddOrder.Size = new System.Drawing.Size(124, 34);
@@ -202,7 +203,7 @@
             // 
             // bindingNavigatorO
             // 
-            this.bindingNavigatorO.AddNewItem = null;
+            this.bindingNavigatorO.AddNewItem = this.bindingNavigatorAddNewItem;
             this.bindingNavigatorO.BindingSource = this.orderBindingSource;
             this.bindingNavigatorO.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigatorO.DeleteItem = null;
@@ -216,7 +217,8 @@
             this.bindingNavigatorSeparator1,
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2});
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem});
             this.bindingNavigatorO.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigatorO.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigatorO.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -425,6 +427,15 @@
             this.totalMoneyDataGridViewTextBoxColumn.Name = "totalMoneyDataGridViewTextBoxColumn";
             this.totalMoneyDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(24, 24);
+            this.bindingNavigatorAddNewItem.Text = "新添";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -495,6 +506,7 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalMoneyDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button ImportBrn;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
     }
 }
 

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace OrderServiceWinForm
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         // 为订单管理的程序添加一个WinForm的界面。通过这个界面，调用OrderService的各个方法，
         //实现创建订单、删除订单、修改订单、查询订单等功能。
@@ -22,22 +22,32 @@ namespace OrderServiceWinForm
 
 
         //导入数据
-        
+
         public OrderService orderService = OrderService.Import(@"D:\orderService.xml");
-        public string path= @"D:\orderService.xml";
+        public string path = @"D:\orderService.xml";
         public string KeyWord { get; set; }
 
-        public Form1()
+        public MainForm()
         {
             //初始化在第一行
             InitializeComponent();
             //绑定订单数据源
             orderBindingSource.DataSource = orderService.Orders;
-          
+
             //绑定查询内容
             queryInput.DataBindings.Add("Text", this, "KeyWord");
 
             FindCondition.SelectedIndex = FindCondition.Items.IndexOf("None");
+
+            string[] results = Enum.GetNames(typeof(Products));  //对combobox赋值 
+
+            for (int i = 0; i < results.Length; i++)
+            {
+                comboBox2.Items.Add(results[i]);
+                comboBox1.Items.Add(results[i]);
+            }
+
+            comboBox2.SelectedIndex = comboBox2.Items.IndexOf("Apple");
 
         }
 
@@ -58,9 +68,13 @@ namespace OrderServiceWinForm
                 }
                 else if (FindCondition.SelectedItem.ToString() == "产品名称")
                 {
-                    orderBindingSource.DataSource = orderService.FindOrderByProductBrand((Products)Enum.Parse(typeof(Products), KeyWord));
+                    comboBox1.Visible = true;
+                    orderBindingSource.DataSource =
+                        orderService.FindOrderByProductBrand(
+                            (Products)Enum.Parse(typeof(Products),
+                        comboBox1.SelectedItem.ToString()));
                 }
-                else if(FindCondition.SelectedItem.ToString() == "None")
+                else if (FindCondition.SelectedItem.ToString() == "None")
                 {
                     orderBindingSource.DataSource = orderService.Orders;
                 }
@@ -85,7 +99,7 @@ namespace OrderServiceWinForm
 
         }
 
-        private void Save()
+        private void Save()//进行检查
         {
             orderService.Export(path);
         }
@@ -121,7 +135,7 @@ namespace OrderServiceWinForm
             file.ShowDialog();
             path = file.FileName;
             orderService = OrderService.Import(path);
-            FindBtn_Click(this,null);
+            FindBtn_Click(this, null);
         }
 
         private void AddOrder_Click(object sender, EventArgs e)
@@ -131,8 +145,8 @@ namespace OrderServiceWinForm
 
         private void RemoveOrder_Click(object sender, EventArgs e)
         {
-           
-            foreach(var o in orderService.Orders)
+
+            foreach (var o in orderService.Orders)
             {
                 if (o.OrderNum == ChosenOrder.Text)
                 {
@@ -144,7 +158,48 @@ namespace OrderServiceWinForm
             BindingSource bs = new BindingSource();
             bs.DataSource = orderService.Orders;
             orderBindingSource.DataSource = bs;
-           
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.ColumnIndex == 0)
+            {
+
+                Rectangle R = dataGridView2.GetCellDisplayRectangle(
+                                    dataGridView2.CurrentCell.ColumnIndex,
+                                    dataGridView2.CurrentCell.RowIndex, false);
+
+                comboBox2.Location = new Point(dataGridView2.Location.X + R.X,
+                    dataGridView2.Location.Y + R.Y);
+
+                comboBox2.Width = R.Width;
+                comboBox2.Height = R.Height;
+                comboBox2.Visible = true;
+            }
+            else
+            {
+                comboBox2.Visible = false;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ((OrderDetail)orderDetailsBindingSource.Current).Brand =
+                (Products)Enum.Parse(typeof(Products), comboBox2.SelectedItem.ToString());
+        }
+
+        private void FindCondition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (FindCondition.SelectedItem.ToString() == "产品名称")
+            {
+                comboBox1.Visible = true;
+            }
+            else
+            {
+                comboBox1.Visible = false;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace OrderServiceWinForm
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.ImportBrn = new System.Windows.Forms.Button();
             this.RemoveOrder = new System.Windows.Forms.Button();
-            this.AddOrder = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.AddOrder = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.FindCondition = new System.Windows.Forms.ComboBox();
             this.FindBtn = new System.Windows.Forms.Button();
@@ -42,6 +42,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.bindingNavigatorO = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -58,28 +60,31 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.brandDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productsNumDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalMoneyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.brandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productsNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorO)).BeginInit();
             this.bindingNavigatorO.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.ImportBrn);
             this.panel1.Controls.Add(this.RemoveOrder);
             this.panel1.Controls.Add(this.label2);
@@ -116,6 +121,15 @@
             this.RemoveOrder.UseVisualStyleBackColor = true;
             this.RemoveOrder.Click += new System.EventHandler(this.RemoveOrder_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "查询方式";
+            // 
             // AddOrder
             // 
             this.AddOrder.Location = new System.Drawing.Point(536, 35);
@@ -126,15 +140,6 @@
             this.AddOrder.Text = "添加订单";
             this.AddOrder.UseVisualStyleBackColor = true;
             this.AddOrder.Click += new System.EventHandler(this.AddOrder_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "查询方式";
             // 
             // label1
             // 
@@ -158,6 +163,7 @@
             this.FindCondition.Name = "FindCondition";
             this.FindCondition.Size = new System.Drawing.Size(121, 23);
             this.FindCondition.TabIndex = 2;
+            this.FindCondition.SelectedIndexChanged += new System.EventHandler(this.FindCondition_SelectedIndexChanged);
             // 
             // FindBtn
             // 
@@ -229,6 +235,19 @@
             this.bindingNavigatorO.Size = new System.Drawing.Size(390, 27);
             this.bindingNavigatorO.TabIndex = 1;
             this.bindingNavigatorO.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(24, 24);
+            this.bindingNavigatorAddNewItem.Text = "新添";
+            // 
+            // orderBindingSource
+            // 
+            this.orderBindingSource.DataSource = typeof(program1.Order);
             // 
             // bindingNavigatorCountItem
             // 
@@ -340,6 +359,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.comboBox2);
             this.panel3.Controls.Add(this.dataGridView2);
             this.panel3.Controls.Add(this.dataGridView1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -354,11 +374,10 @@
             this.dataGridView2.AutoGenerateColumns = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.brandDataGridViewTextBoxColumn1,
-            this.productsNumDataGridViewTextBoxColumn1,
-            this.priceDataGridViewTextBoxColumn1});
-            this.dataGridView2.DataMember = "OrderDetails";
-            this.dataGridView2.DataSource = this.orderBindingSource;
+            this.brandDataGridViewTextBoxColumn,
+            this.productsNumDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn});
+            this.dataGridView2.DataSource = this.orderDetailsBindingSource;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridView2.Location = new System.Drawing.Point(575, 0);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -366,6 +385,7 @@
             this.dataGridView2.RowTemplate.Height = 27;
             this.dataGridView2.Size = new System.Drawing.Size(488, 408);
             this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // dataGridView1
             // 
@@ -384,28 +404,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1063, 408);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // brandDataGridViewTextBoxColumn1
-            // 
-            this.brandDataGridViewTextBoxColumn1.DataPropertyName = "Brand";
-            this.brandDataGridViewTextBoxColumn1.HeaderText = "Brand";
-            this.brandDataGridViewTextBoxColumn1.Name = "brandDataGridViewTextBoxColumn1";
-            // 
-            // productsNumDataGridViewTextBoxColumn1
-            // 
-            this.productsNumDataGridViewTextBoxColumn1.DataPropertyName = "ProductsNum";
-            this.productsNumDataGridViewTextBoxColumn1.HeaderText = "Products Number";
-            this.productsNumDataGridViewTextBoxColumn1.Name = "productsNumDataGridViewTextBoxColumn1";
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn1.HeaderText = "Unit Price";
-            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
-            // 
-            // orderBindingSource
-            // 
-            this.orderBindingSource.DataSource = typeof(program1.Order);
             // 
             // orderNumDataGridViewTextBoxColumn
             // 
@@ -427,16 +425,49 @@
             this.totalMoneyDataGridViewTextBoxColumn.Name = "totalMoneyDataGridViewTextBoxColumn";
             this.totalMoneyDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // bindingNavigatorAddNewItem
+            // comboBox2
             // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorAddNewItem.Text = "新添";
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(575, 50);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 23);
+            this.comboBox2.TabIndex = 2;
+            this.comboBox2.Visible = false;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
-            // Form1
+            // orderDetailsBindingSource
+            // 
+            this.orderDetailsBindingSource.DataMember = "OrderDetails";
+            this.orderDetailsBindingSource.DataSource = this.orderBindingSource;
+            // 
+            // brandDataGridViewTextBoxColumn
+            // 
+            this.brandDataGridViewTextBoxColumn.DataPropertyName = "Brand";
+            this.brandDataGridViewTextBoxColumn.HeaderText = "Brand";
+            this.brandDataGridViewTextBoxColumn.Name = "brandDataGridViewTextBoxColumn";
+            // 
+            // productsNumDataGridViewTextBoxColumn
+            // 
+            this.productsNumDataGridViewTextBoxColumn.DataPropertyName = "ProductsNum";
+            this.productsNumDataGridViewTextBoxColumn.HeaderText = "ProductsNum";
+            this.productsNumDataGridViewTextBoxColumn.Name = "productsNumDataGridViewTextBoxColumn";
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(109, 52);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.Visible = false;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -445,7 +476,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
@@ -456,12 +487,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorO)).EndInit();
             this.bindingNavigatorO.ResumeLayout(false);
             this.bindingNavigatorO.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -474,9 +506,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource orderBindingSource;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brandDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productsNumDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientNameDataGridViewTextBoxColumn;
 
@@ -507,6 +536,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalMoneyDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button ImportBrn;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brandDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productsNumDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource orderDetailsBindingSource;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

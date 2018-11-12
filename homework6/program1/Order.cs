@@ -11,7 +11,7 @@ namespace program1
     public class Order
     {//属性大写开头，字段小写开头
 
-        public static string GenerateRandomCode(int length)
+        public string GenerateRandomCode(int length)
         {
             var result = new StringBuilder();
             for (var i = 0; i < length; i++)
@@ -38,10 +38,10 @@ namespace program1
         }
 
         public Order() {
-            this.OrderNum= DateTime.Now.Year.ToString() + '-'
-                    + DateTime.Now.Hour.ToString() + '-'
-                    + DateTime.Now.Second.ToString() + '-'
-                    + GenerateRandomCode(5);
+            OrderNum= DateTime.Now.Year.ToString() + '-'
+                    + DateTime.Now.Month.ToString() + '-'
+                    + DateTime.Now.Day.ToString() + '-'
+                    + GenerateRandomCode(3);
         }
 
     

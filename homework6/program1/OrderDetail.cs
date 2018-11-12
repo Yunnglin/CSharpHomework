@@ -23,7 +23,10 @@ namespace program1
         public int ProductsNum { get; set; }
         public decimal Price { get; set; }
 
-        public OrderDetail(Products brand,int productsNum,decimal price)
+        public OrderDetail(
+            Products brand=Products.HUAWEI,
+            int productsNum=1,
+            decimal price=2000)
         {
             Brand = brand;
             ProductsNum = productsNum;

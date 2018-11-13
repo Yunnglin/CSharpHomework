@@ -51,17 +51,21 @@ namespace program1
             Order order1 = new Order
             {
                 ClientName = "Bob",
+                PhoneNum= "+86-10-87654321",
             };
             Order order2 = new Order
             {
                 ClientName = "Tom",
+                PhoneNum = "+86-10-87654321",
             };
             Order order3 = new Order
             {
                 ClientName = "Alice",
+                PhoneNum = "+86-10-87654321",
             }; Order order4 = new Order
             {
                 ClientName = "Alex",
+                PhoneNum = "+86-10-87654321",
             };
             #endregion
 
@@ -90,7 +94,8 @@ namespace program1
             orderService.AddOrder(order3);
             orderService.AddOrder(order4);
 
-            orderService.Export(@"D:\orderService.xml");
+            //orderService.Export(@"D:\orderService.xml");
+            orderService.xslT("D:\\orderService");
           // OrderService os= OrderService.Import(@"D:\orderService.xml");
             //try
             //{

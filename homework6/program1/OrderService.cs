@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Xml;
+using System.Xml.XPath;
+using System.Xml.Xsl;
 
 
 namespace program1
@@ -196,6 +199,45 @@ namespace program1
             orderService.DisplayAllOrders();
 
             return orderService;
+        }
+
+        public void xslT(string path)
+        {
+            //注意层级之间的关系
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(path+".xml");
+
+                XPathNavigator nav = doc.CreateNavigator();
+                nav.MoveToRoot();
+
+                XslCompiledTransform xt = new XslCompiledTransform();
+                xt.Load(path+".xslt");
+
+                FileStream outFileStream = File.OpenWrite(path + ".html");
+                XmlTextWriter writer = new XmlTextWriter(outFileStream, System.Text.Encoding.UTF8);
+                xt.Transform(nav, null, writer);
+
+
+            }
+            catch (XmlException e)
+            {
+                Console.WriteLine("XML Exception:" + e.ToString());
+            }
+            catch (XsltException e)
+            {
+                Console.WriteLine("XSLT Exception:" + e.ToString());
+            }
+        }
+
+        public static string ConvertXML(XmlDocument InputXMLDocument, string XSLTFilePath, XsltArgumentList XSLTArgs)
+        {
+            System.IO.StringWriter sw = new System.IO.StringWriter();
+            XslCompiledTransform xslTrans = new XslCompiledTransform();
+            xslTrans.Load(XSLTFilePath);
+            xslTrans.Transform(InputXMLDocument.CreateNavigator(), XSLTArgs, sw);
+            return sw.ToString();
         }
     }
 }

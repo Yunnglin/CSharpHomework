@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.ImportBrn = new System.Windows.Forms.Button();
             this.RemoveOrder = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.bindingNavigatorO = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -58,28 +58,29 @@
             this.ChosenOrder = new System.Windows.Forms.Label();
             this.EchoLab = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalMoneyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.phoneNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productsNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorO)).BeginInit();
             this.bindingNavigatorO.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -97,8 +98,17 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1063, 102);
+            this.panel1.Size = new System.Drawing.Size(1173, 102);
             this.panel1.TabIndex = 0;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(109, 52);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.Visible = false;
             // 
             // ImportBrn
             // 
@@ -195,7 +205,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 510);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1063, 155);
+            this.panel2.Size = new System.Drawing.Size(1173, 155);
             this.panel2.TabIndex = 1;
             // 
             // panel5
@@ -244,10 +254,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(24, 24);
             this.bindingNavigatorAddNewItem.Text = "新添";
-            // 
-            // orderBindingSource
-            // 
-            this.orderBindingSource.DataSource = typeof(program1.Order);
             // 
             // bindingNavigatorCountItem
             // 
@@ -324,13 +330,13 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 63);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1063, 92);
+            this.panel4.Size = new System.Drawing.Size(1173, 92);
             this.panel4.TabIndex = 1;
             // 
             // SaveButton
             // 
             this.SaveButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SaveButton.Location = new System.Drawing.Point(978, 0);
+            this.SaveButton.Location = new System.Drawing.Point(1088, 0);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(85, 92);
             this.SaveButton.TabIndex = 2;
@@ -366,8 +372,18 @@
             this.panel3.Location = new System.Drawing.Point(0, 102);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1063, 408);
+            this.panel3.Size = new System.Drawing.Size(1173, 408);
             this.panel3.TabIndex = 2;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(685, 54);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 23);
+            this.comboBox2.TabIndex = 2;
+            this.comboBox2.Visible = false;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // dataGridView2
             // 
@@ -377,15 +393,21 @@
             this.brandDataGridViewTextBoxColumn,
             this.productsNumDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.orderDetailsBindingSource;
+            this.dataGridView2.DataMember = "OrderDetails";
+            this.dataGridView2.DataSource = this.orderBindingSource;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView2.Location = new System.Drawing.Point(575, 0);
+            this.dataGridView2.Location = new System.Drawing.Point(685, 0);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 27;
             this.dataGridView2.Size = new System.Drawing.Size(488, 408);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // orderDetailsBindingSource
+            // 
+            this.orderDetailsBindingSource.DataMember = "OrderDetails";
+            this.orderDetailsBindingSource.DataSource = this.orderBindingSource;
             // 
             // dataGridView1
             // 
@@ -394,23 +416,28 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.orderNumDataGridViewTextBoxColumn,
             this.clientNameDataGridViewTextBoxColumn,
-            this.totalMoneyDataGridViewTextBoxColumn});
+            this.totalMoneyDataGridViewTextBoxColumn,
+            this.phoneNumDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.orderBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(1063, 408);
+            this.dataGridView1.Size = new System.Drawing.Size(1173, 408);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // orderBindingSource
+            // 
+            this.orderBindingSource.DataSource = typeof(program1.Order);
             // 
             // orderNumDataGridViewTextBoxColumn
             // 
             this.orderNumDataGridViewTextBoxColumn.DataPropertyName = "OrderNum";
-            this.orderNumDataGridViewTextBoxColumn.HeaderText = "OrderNumber";
+            this.orderNumDataGridViewTextBoxColumn.HeaderText = "Order Number";
             this.orderNumDataGridViewTextBoxColumn.Name = "orderNumDataGridViewTextBoxColumn";
-            this.orderNumDataGridViewTextBoxColumn.ReadOnly = true;
+            this.orderNumDataGridViewTextBoxColumn.Width = 150;
             // 
             // clientNameDataGridViewTextBoxColumn
             // 
@@ -421,24 +448,15 @@
             // totalMoneyDataGridViewTextBoxColumn
             // 
             this.totalMoneyDataGridViewTextBoxColumn.DataPropertyName = "TotalMoney";
-            this.totalMoneyDataGridViewTextBoxColumn.HeaderText = "TotalMoney";
+            this.totalMoneyDataGridViewTextBoxColumn.HeaderText = "Total Money";
             this.totalMoneyDataGridViewTextBoxColumn.Name = "totalMoneyDataGridViewTextBoxColumn";
             this.totalMoneyDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // comboBox2
+            // phoneNumDataGridViewTextBoxColumn
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(575, 50);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.Visible = false;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // orderDetailsBindingSource
-            // 
-            this.orderDetailsBindingSource.DataMember = "OrderDetails";
-            this.orderDetailsBindingSource.DataSource = this.orderBindingSource;
+            this.phoneNumDataGridViewTextBoxColumn.DataPropertyName = "PhoneNum";
+            this.phoneNumDataGridViewTextBoxColumn.HeaderText = "Phone Number";
+            this.phoneNumDataGridViewTextBoxColumn.Name = "phoneNumDataGridViewTextBoxColumn";
             // 
             // brandDataGridViewTextBoxColumn
             // 
@@ -458,20 +476,11 @@
             this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(109, 52);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 8;
-            this.comboBox1.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 665);
+            this.ClientSize = new System.Drawing.Size(1173, 665);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -487,13 +496,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorO)).EndInit();
             this.bindingNavigatorO.ResumeLayout(false);
             this.bindingNavigatorO.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -506,8 +515,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource orderBindingSource;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderNumDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientNameDataGridViewTextBoxColumn;
 
         private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceDataGridViewTextBoxColumn;
 
@@ -533,15 +540,18 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalMoneyDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button ImportBrn;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.BindingSource orderDetailsBindingSource;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderNumDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalMoneyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn brandDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productsNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource orderDetailsBindingSource;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

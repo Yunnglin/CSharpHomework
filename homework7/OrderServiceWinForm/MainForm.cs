@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace OrderServiceWinForm
 {
@@ -99,9 +100,30 @@ namespace OrderServiceWinForm
 
         }
 
-        private void Save()//进行检查
+        private bool Save()//进行检查
         {
+           
+            string phoneNum = @"^\+[0-9]{2}-[0-9]{2}-[0-9]{8}$";
+            Regex rx1 = new Regex(phoneNum);
+          //  Regex rx2 = new Regex(orderNum);
+
+            foreach (var o in orderService.Orders)
+            {
+                Match m1 = rx1.Match(o.PhoneNum);
+                if (m1.Success == false)
+                {
+                    MessageBox.Show("电话号码格式错误");
+                    return false;
+                }
+                //Match m2 = rx1.Match(o.OrderNum);
+                //if (m2.Success == false)
+                //{
+                //    MessageBox.Show("订单号格式错误");
+                //    return false;
+                //}
+            }
             orderService.Export(path);
+            return true;
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -112,9 +134,8 @@ namespace OrderServiceWinForm
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult re = MessageBox.Show("是否保存？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (re == DialogResult.OK)
+            if (re == DialogResult.OK && Save())
             {
-                Save();
                 this.Dispose();//是释放当前的整个窗体资源，不会重复执行formClosing这个方法，所以退出了
             }
             else
@@ -186,6 +207,10 @@ namespace OrderServiceWinForm
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (orderDetailsBindingSource.Current == null)
+            {
+                orderDetailsBindingSource.Add(new OrderDetail());
+            }
             ((OrderDetail)orderDetailsBindingSource.Current).Brand =
                 (Products)Enum.Parse(typeof(Products), comboBox2.SelectedItem.ToString());
         }

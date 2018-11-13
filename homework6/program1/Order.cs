@@ -26,6 +26,8 @@ namespace program1
 
         public string ClientName { set; get; }
 
+        public string PhoneNum { set; get; }
+      
         public decimal TotalMoney
         {
             get

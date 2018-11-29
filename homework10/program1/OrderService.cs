@@ -13,18 +13,20 @@ using System.Xml.Xsl;
 
 namespace program1
 
-{   [Serializable]
-//添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询）功能。
-   public class OrderService
+{
+    [Serializable]
+    //添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询）功能。
+    public class OrderService
     {
 
-        public void AddOrder(Order order) {//添加订单
-            using(var db=new DataBase())
+        public void AddOrder(Order order)
+        {//添加订单
+            using (var db = new DataBase())
             {
-               db.Orders.Add(order);
+                db.Orders.Add(order);
                 db.SaveChanges();
             }
-          
+
         }
 
         public void RemoveOrder(string orderNum)//删除订单
@@ -34,6 +36,7 @@ namespace program1
                 var order = db.Orders.Include("OrderDetails").SingleOrDefault(o => o.OrderNum == orderNum);
                 db.OrderDetails.RemoveRange(order.OrderDetails);
                 db.Orders.Remove(order);
+                db.SaveChanges();
             }
 
         }
@@ -54,7 +57,7 @@ namespace program1
         {
             using (var db = new DataBase())
             {
-                return db.Orders.Include("OrderDetails"). SingleOrDefault(o => o.OrderNum == Id);
+                return db.Orders.Include("OrderDetails").SingleOrDefault(o => o.OrderNum == Id);
             }
         }
 
@@ -87,7 +90,7 @@ namespace program1
         }
 
         public OrderService() { }//反序列化需要无参的构造函数
-        
+
         public void Export(string path)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(OrderService));
@@ -122,13 +125,13 @@ namespace program1
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(path+".xml");
+                doc.Load(path + ".xml");
 
                 XPathNavigator nav = doc.CreateNavigator();
                 nav.MoveToRoot();
 
                 XslCompiledTransform xt = new XslCompiledTransform();
-                xt.Load(path+".xslt");
+                xt.Load(path + ".xslt");
 
                 FileStream outFileStream = File.OpenWrite(path + ".html");
                 XmlTextWriter writer = new XmlTextWriter(outFileStream, System.Text.Encoding.UTF8);

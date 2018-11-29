@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace program1
 {
-  public enum Products
+    public enum Products
     {
         HUAWEI,
         vivo,
@@ -26,9 +26,9 @@ namespace program1
         public decimal Price { get; set; }
 
         public OrderDetail(
-            Products brand=Products.HUAWEI,
-            int productsNum=1,
-            decimal price=2000)
+            Products brand,
+            int productsNum,
+            decimal price)
         {
             Brand = brand;
             ProductsNum = productsNum;

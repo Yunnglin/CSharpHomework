@@ -20,6 +20,10 @@ namespace program1
       
         public decimal TotalMoney
         {
+            set
+            {
+
+            }
             get
             {
                 decimal totalMoney = OrderDetails
@@ -30,22 +34,24 @@ namespace program1
         }
 
         public Order() {
-            OrderNum= DateTime.Now.Year.ToString() + '-'
-                    + DateTime.Now.Month.ToString() + '-'
-                    + DateTime.Now.Day.ToString() + '-'
-                    + GenerateRandomCode(3);
+           OrderDetails = new List<OrderDetail>();
         }
 
-    
+        public Order(string customer, string phoneNum,List<OrderDetail> items)
+        {
+            OrderNum = DateTime.Now.Year.ToString() + '-'
+                  + DateTime.Now.Month.ToString() + '-'
+                  + DateTime.Now.Day.ToString() + '-'
+                  + GenerateRandomCode(3);
+            ClientName = customer;
+            OrderDetails = items;
+            PhoneNum = phoneNum;
+        }
+
         // [XmlElement(ElementName ="OrderDetails")]
-        public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public List<OrderDetail> OrderDetails { get; set; } 
 
-        public void AddOrderDetails(OrderDetail orderDetails) => this.OrderDetails.Add(orderDetails);//添加条目
-
-        public void RemoveOrderDetails(OrderDetail orderDetails) => this.OrderDetails.Remove(orderDetails);//删除条目
-
-        public void ClearOrderDetails() => OrderDetails.Clear();//清空条目
-
+  
         public decimal GetTotalMoney()
         {
             decimal totalMoney = OrderDetails

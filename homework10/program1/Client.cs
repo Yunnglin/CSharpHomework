@@ -48,42 +48,30 @@ namespace program1
             #endregion
 
             #region //示例订单
-            Order order1 = new Order
-            {
-                ClientName = "Bob",
-                PhoneNum= "+86-10-87654321",
-            };
-            Order order2 = new Order
-            {
-                ClientName = "Tom",
-                PhoneNum = "+86-10-87654321",
-            };
-            Order order3 = new Order
-            {
-                ClientName = "Alice",
-                PhoneNum = "+86-10-87654321",
-            }; Order order4 = new Order
-            {
-                ClientName = "Alex",
-                PhoneNum = "+86-10-87654321",
-            };
-            #endregion
 
-            #region//添加订单明细
-            //直接add时创建对象
-            //order1.orderDetails = new List<OrderDetails>();
-            order1.AddOrderDetails(new OrderDetail(Products.Apple, 3, 8800));
-            order1.AddOrderDetails(new OrderDetail(Products.HUAWEI, 2, 2800));
+            List<OrderDetail> od1 = new List<OrderDetail>() {
+                 new OrderDetail(Products.Apple, 3, 8800),
+           new OrderDetail(Products.HUAWEI, 2, 2800),
+        };
+            List<OrderDetail> od2 = new List<OrderDetail>() {
+               new OrderDetail(Products.OPPO, 1, 3200),
+            new OrderDetail(Products.SAMSUNG, 4, 4800),
+        };
 
-           // order2.orderDetails = new List<OrderDetails>();
-            order2.AddOrderDetails(new OrderDetail(Products.OPPO, 1, 3200));
-            order2.AddOrderDetails(new OrderDetail(Products.SAMSUNG, 4, 4800));
+            List<OrderDetail> od3 = new List<OrderDetail>() {
+             new OrderDetail(Products.vivo, 1, 3000),
+        };
+            List<OrderDetail> od4 = new List<OrderDetail>() {
+            new OrderDetail(Products.XIAOMI, 10, 2500)
+        };
+            Order order1 = new Order("Bob", "+86-10-87654321",od1);
 
-            //order3.orderDetails = new List<OrderDetails>();
-            order3.AddOrderDetails(new OrderDetail(Products.vivo, 1, 3000));
+            Order order2 = new Order("Tom", "+86-10-87654321", od2);
 
-            //order4.orderDetails = new List<OrderDetails>();
-            order4.AddOrderDetails(new OrderDetail(Products.XIAOMI, 10, 2500));
+            Order order3 = new Order("Alice", "+86-10-87654321",od3);
+
+          Order order4 = new Order("Alex", "+86-10-87654321", od4);
+          
             #endregion
 
             //订单服务,添加了两个订单
